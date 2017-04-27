@@ -1,0 +1,35 @@
+//
+//  PrefixHeader.pch
+//  PLCAudioRecorderDemo
+//
+//  Created by PlutusCat on 2017/4/25.
+//  Copyright © 2017年 PlutusCat. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_WIDTH  ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
+
+#define K_STANDARD_WIDTH 750.0
+#define K_STANDARD_HEIGHT 1280.0
+// 坐标
+#define K_AUTOSIZE_Y(Y) (Y / K_STANDARD_HEIGHT * SCREEN_HEIGHT)
+#define K_AUTOSIZE_X(X) (X / K_STANDARD_WIDTH * SCREEN_WIDTH)
+// 宽高
+#define K_AUTOSIZE_HEIGHT(HEIGHT) (HEIGHT / K_STANDARD_HEIGHT * SCREEN_HEIGHT)
+#define K_AUTOSIZE_WIDTH(WIDTH) (WIDTH / K_STANDARD_WIDTH * SCREEN_WIDTH)
+
+#define kFont(font)  [UIFont systemFontOfSize:font]
+
+#import <AVFoundation/AVFoundation.h>
+#import <Masonry/Masonry.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <JHChainableAnimations/JHChainableAnimations.h>
+#import <BlocksKit/BlocksKit.h>
+#import "TimerHelper.h"
+#import "PLCAudioPath.h"
+
+#endif /* PrefixHeader_pch */

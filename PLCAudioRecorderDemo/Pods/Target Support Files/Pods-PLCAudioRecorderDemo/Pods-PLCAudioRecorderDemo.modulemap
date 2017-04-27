@@ -1,0 +1,6 @@
+framework module Pods_PLCAudioRecorderDemo {
+  umbrella header "Pods-PLCAudioRecorderDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
