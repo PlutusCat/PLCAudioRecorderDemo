@@ -16,11 +16,20 @@
  *
  *  @return 录音文件路径
  */
-+ (NSURL *)getSavePath {
++ (NSURL *)getRecordFilePath {
     NSString *urlStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     urlStr = [urlStr stringByAppendingPathComponent:kRecordAudioFile];
     NSLog(@"file path:%@",urlStr);
     NSURL *url = [NSURL fileURLWithPath:urlStr];
     return url;
+}
+
++ (void)deleteRecordFile {
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *recordFileUrl = [PLCAudioPath getRecordFilePath];
+    if (recordFileUrl) {
+        [fileManager removeItemAtURL:recordFileUrl error:NULL];
+    }
 }
 @end

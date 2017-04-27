@@ -37,6 +37,7 @@ static NSString *const pressCancelStr = @"长按模式";
 @property (nonatomic, assign) PLCRecorderRunType   recorderRunType;
 
 @property (nonatomic, strong) PLCAudioRecorderHelper *recorderHelper;
+@property (nonatomic, strong) PLCPlayAudioHelper *playAudioHelper;
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) TimerHelper *timerHelper;
@@ -102,8 +103,6 @@ static NSString *const pressCancelStr = @"长按模式";
         [againButton addTarget:self action:@selector(againBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:againButton];
         self.againButton = againButton;
-        
-         [self PLClayoutSubviews];
         
     }
     return self;
@@ -194,25 +193,27 @@ static NSString *const pressCancelStr = @"长按模式";
     
     self.auditionButton.selected = !auditionBtn.isSelected;
 
+    if (!_playAudioHelper) {
+        PLCPlayAudioHelper *playAudioHelper = [[PLCPlayAudioHelper alloc] init];
+        
+        __weak typeof(self) weakSelf = self;
+        playAudioHelper.playerDidFinish = ^{
+            weakSelf.auditionButton.selected = !weakSelf.auditionButton.selected;
+        };
+        
+        self.playAudioHelper = playAudioHelper;
+    }
+    
     if (self.auditionButton.isSelected) {
         NSLog(@"试听");
         
-//        [self.recorderHelper playRecorder];
-//        
-//        __weak __typeof(self)weakSelf = self;
-//        [self.recorderHelper setPlayCompletBlock:^(BOOL completion){
-//            if (completion) {
-//               NSLog(@"试听完成");
-//                weakSelf.auditionButton.selected = !weakSelf.auditionButton.selected;
-//            }
-//        }];
-//        
-//        [self.recorderHelper setPlayErrorBlock:^(NSString *error){
-//            NSLog(@"试听错误 error = %@", error);
-//        }];
+        [self.playAudioHelper playRecorder];
         
     }else {
         NSLog(@"取消");
+        
+        [self.playAudioHelper stop];
+        
     }
     
 }
@@ -228,7 +229,7 @@ static NSString *const pressCancelStr = @"长按模式";
     //重置 top
     self.topLable.text = clickSelectStr;
     //停止 播放录音
-//    [self.recorderHelper endRecorder];
+
     
 }
 
@@ -297,7 +298,7 @@ static NSString *const pressCancelStr = @"长按模式";
 
     //开始计时
     
-    PLCAudioRecorderHelper *recorderHelper = [[PLCAudioRecorderHelper alloc] init];
+    PLCAudioRecorderHelper *recorderHelper = [PLCAudioRecorderHelper sharedPLCAudioRecorderHelper];
     [recorderHelper startAudioRecorder];
     self.recorderHelper = recorderHelper;
     
@@ -346,6 +347,7 @@ static NSString *const pressCancelStr = @"长按模式";
 
     if (_recorderType==PLCAudioRecorderClickType) {
         self.topLable.text = clickCancelStr;
+        self.auditionButton.selected = !self.auditionButton.selected;
         [self changeclickWithImgName:@"living_btn_big_recard1"];
     }
     
@@ -359,6 +361,11 @@ static NSString *const pressCancelStr = @"长按模式";
 }
 
 #pragma mark - - 默认模式布局
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self PLClayoutSubviews];
+}
 
 - (void)PLClayoutSubviews {
     [self.topLable mas_makeConstraints:^(MASConstraintMaker *make) {

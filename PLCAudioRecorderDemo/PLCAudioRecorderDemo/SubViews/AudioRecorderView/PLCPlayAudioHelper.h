@@ -13,7 +13,7 @@
 /** 播放录音 */
 - (void)playRecorder;
 /** 停止播放录音 */
-- (void)endRecorder;
+- (void)stop;
 
 - (void)playStreamRecorder;
 - (void)playStreamRecorderWithUrl:(NSURL *)url;
@@ -21,4 +21,7 @@
 
 @property (nonatomic, copy) void (^playCompletBlock) (BOOL completion);
 @property (nonatomic, copy) void (^playErrorBlock) (NSString *error);
+
+@property (nonatomic, copy) dispatch_block_t playerDidFinish;
+
 @end

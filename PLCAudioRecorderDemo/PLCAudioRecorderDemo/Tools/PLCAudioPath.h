@@ -14,5 +14,7 @@
  *
  *  @return 录音文件路径
  */
-+ (NSURL *)getSavePath;
++ (NSURL *)getRecordFilePath;
+
++ (void)deleteRecordFile;
 @end

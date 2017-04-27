@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PLCAudioRecorderHelper : NSObject
++ (instancetype)sharedPLCAudioRecorderHelper;
+
 #pragma mark - - 录音相关
 /** 开始录音 */
 - (void)startAudioRecorder;
