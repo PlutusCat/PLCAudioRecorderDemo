@@ -38,7 +38,7 @@
 		41DEF2BE1EAF5EB9000F5ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41DEF2BD1EAF5EB9000F5ACD /* Assets.xcassets */; };
 		41DEF2C11EAF5EB9000F5ACD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DEF2BF1EAF5EB9000F5ACD /* LaunchScreen.storyboard */; };
 		ADEC07808B6E349257E90957 /* Pods_PLCAudioRecorderDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70CAD538067742A75BCAACF /* Pods_PLCAudioRecorderDemo.framework */; };
-		EB19633E1EB2471D00CD69EF /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB19633D1EB2471D00CD69EF /* libmp3lame.a */; };
+		EB1963401EB25C0B00CD69EF /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB19633F1EB25C0B00CD69EF /* lame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +87,7 @@
 		41DEF2C81EAF6018000F5ACD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6100DC71678AF7B4A7548AE7 /* Pods-PLCAudioRecorderDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLCAudioRecorderDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PLCAudioRecorderDemo/Pods-PLCAudioRecorderDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B2B9E2802099BFF502F5C5FE /* Pods-PLCAudioRecorderDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLCAudioRecorderDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PLCAudioRecorderDemo/Pods-PLCAudioRecorderDemo.release.xcconfig"; sourceTree = "<group>"; };
-		EB19633C1EB2471D00CD69EF /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
-		EB19633D1EB2471D00CD69EF /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		EB19633F1EB25C0B00CD69EF /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
 		F70CAD538067742A75BCAACF /* Pods_PLCAudioRecorderDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PLCAudioRecorderDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,8 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB19633E1EB2471D00CD69EF /* libmp3lame.a in Frameworks */,
 				417BDBE81EB1C4AC00D9E456 /* AVFoundation.framework in Frameworks */,
+				EB1963401EB25C0B00CD69EF /* lame.framework in Frameworks */,
 				ADEC07808B6E349257E90957 /* Pods_PLCAudioRecorderDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +195,7 @@
 		417BDBE01EB0B38600D9E456 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				EB19633B1EB2471D00CD69EF /* lame */,
+				EB19633F1EB25C0B00CD69EF /* lame.framework */,
 				417BDBE11EB0B39B00D9E456 /* TimerHelper.h */,
 				417BDBE21EB0B39B00D9E456 /* TimerHelper.m */,
 				4144654C1EB21CAF00B49337 /* PLCAudioPath.h */,
@@ -261,15 +260,6 @@
 				B2B9E2802099BFF502F5C5FE /* Pods-PLCAudioRecorderDemo.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		EB19633B1EB2471D00CD69EF /* lame */ = {
-			isa = PBXGroup;
-			children = (
-				EB19633C1EB2471D00CD69EF /* lame.h */,
-				EB19633D1EB2471D00CD69EF /* libmp3lame.a */,
-			);
-			path = lame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -544,6 +534,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZJ7FR8TH2D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PLCAudioRecorderDemo/Tools",
+				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/PLCAudioRecorderDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = PLCAudioRecorderDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -564,6 +558,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZJ7FR8TH2D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PLCAudioRecorderDemo/Tools",
+				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/PLCAudioRecorderDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = PLCAudioRecorderDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

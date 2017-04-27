@@ -24,4 +24,6 @@
 
 @property (nonatomic, copy) dispatch_block_t playerDidFinish;
 
++ (void)CAFChangeToMP3;
+
 @end

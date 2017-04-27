@@ -208,7 +208,7 @@ static NSString *const pressCancelStr = @"长按模式";
         NSLog(@"试听");
         
         [self.playAudioHelper playRecorder];
-        
+//        [self.playAudioHelper playStreamRecorder];
     }else {
         NSLog(@"取消");
         
@@ -335,6 +335,9 @@ static NSString *const pressCancelStr = @"长按模式";
     
     if (_recorderType==PLCAudioRecorderClickType) {
         self.topLable.text = @"";
+        
+        [PLCPlayAudioHelper CAFChangeToMP3];
+        
     }else {
         self.topLable.text = pressSelectStr;
     }
@@ -346,6 +349,7 @@ static NSString *const pressCancelStr = @"长按模式";
 - (void)sendAudioRecorder {
 
     if (_recorderType==PLCAudioRecorderClickType) {
+        [self.playAudioHelper stop];
         self.topLable.text = clickCancelStr;
         self.auditionButton.selected = !self.auditionButton.selected;
         [self changeclickWithImgName:@"living_btn_big_recard1"];

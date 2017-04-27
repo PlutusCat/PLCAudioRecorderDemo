@@ -8,8 +8,6 @@
 
 #import "PLCAudioPath.h"
 
-#define kRecordAudioFile @"PLCRecord.caf"
-
 @implementation PLCAudioPath
 /**
  *  取得录音文件保存路径
@@ -19,6 +17,14 @@
 + (NSURL *)getRecordFilePath {
     NSString *urlStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     urlStr = [urlStr stringByAppendingPathComponent:kRecordAudioFile];
+    NSLog(@"file path:%@",urlStr);
+    NSURL *url = [NSURL fileURLWithPath:urlStr];
+    return url;
+}
+
++ (NSURL *)getMp3RecordFilePath {
+    NSString *urlStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    urlStr = [urlStr stringByAppendingPathComponent:kChangedAudioFile];
     NSLog(@"file path:%@",urlStr);
     NSURL *url = [NSURL fileURLWithPath:urlStr];
     return url;

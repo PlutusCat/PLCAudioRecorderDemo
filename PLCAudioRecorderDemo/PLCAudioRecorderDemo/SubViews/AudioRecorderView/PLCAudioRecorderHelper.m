@@ -78,13 +78,13 @@ static id instance;
     //设置录音格式
     [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
     //设置录音采样率，8000是电话采样率，对于一般录音已经够了
-    [dicM setObject:@(44100) forKey:AVSampleRateKey];
+    [dicM setObject:@(8000) forKey:AVSampleRateKey];
     //设置通道,这里采用单声道
-    [dicM setObject:@(1) forKey:AVNumberOfChannelsKey];
+    [dicM setObject:@(2) forKey:AVNumberOfChannelsKey];
     //每个采样点位数,分为8、16、24、32
-    [dicM setObject:@(8) forKey:AVLinearPCMBitDepthKey];
+    [dicM setObject:@(16) forKey:AVLinearPCMBitDepthKey];
     //是否使用浮点数采样
-    [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
+//    [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
     //录音的质量
     [dicM setObject:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
     //....其他设置等
