@@ -72,20 +72,13 @@ static id instance;
  */
 - (NSDictionary *)getAudioSetting {
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
-    //设置录音格式
+
     [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
-    //设置录音采样率，8000是电话采样率，对于一般录音已经够了
     [dicM setObject:@(11025.0) forKey:AVSampleRateKey];
-    //设置通道,这里采用单声道
     [dicM setObject:@(2) forKey:AVNumberOfChannelsKey];
-    //每个采样点位数,分为8、16、24、32
     [dicM setObject:@(16) forKey:AVLinearPCMBitDepthKey];
-    //是否使用浮点数采样
-//    [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
-    //录音的质量
     [dicM setObject:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
-    
-    //....其他设置等
+
     return dicM;
 }
 
@@ -93,12 +86,6 @@ static id instance;
 #pragma mark - - 开始录音
 - (BOOL)startAudioRecorder {
     
-    // 停止正在播放的音频
-    
-    // 停止正在录制的音频
-//    [self.audioRecorder stop];
-    // 删除之前的录音文件
-//    [self.audioRecorder deleteRecording];
     [PLCAudioPath deleteRecordFile];
 
     /**
@@ -127,6 +114,7 @@ static id instance;
         
         return NO;
     }else {
+       
         return YES;
     }
     
@@ -160,6 +148,9 @@ static id instance;
     if (flag) {
         NSLog(@"录音完成!");
         [self.session setActive:NO error:nil];
+        
+        [recorder deleteRecording];
+        
     }  
 }
 

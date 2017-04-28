@@ -548,6 +548,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PlutusCat.PLCAudioRecorderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
@@ -572,6 +573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PlutusCat.PLCAudioRecorderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;

@@ -72,4 +72,17 @@
     return startTime;
 }
 
+
+- (NSString *)getTimerlength3 {
+//    获取系统  minutes 分 seconds 秒
+    self.seconds++;
+    
+    if (self.seconds == 60) {
+        self.minutes++;
+        self.seconds = 0;
+    }
+
+    return [NSString stringWithFormat:@"%02ld'%02ld\"",_minutes,_seconds];
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const CAFChangeToMP3Complete = @"CAFChangeToMP3Complete";
+
 @interface PLCPlayAudioHelper : NSObject
 #pragma mark - - 播放相关
 /** 播放录音 */

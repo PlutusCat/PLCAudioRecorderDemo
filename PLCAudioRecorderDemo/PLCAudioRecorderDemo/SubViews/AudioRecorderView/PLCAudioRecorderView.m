@@ -50,10 +50,11 @@ static NSString *const pressCancelStr = @"长按模式";
     self = [super init];
     if (self) {
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cafChangeToMP3Complete) name:CAFChangeToMP3Complete object:nil];
+        
         self.backgroundColor = [UIColor whiteColor];
         self.timeFloat = 0.0;
-       //创建两个 Button
-        
+       
         UIButton *clickButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [clickButton setBackgroundImage:[UIImage imageNamed:@"living_btn_big_recard1"] forState:UIControlStateNormal];
         [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -313,14 +314,15 @@ static NSString *const pressCancelStr = @"长按模式";
         TimerHelper *timerHelper = [[TimerHelper alloc] init];
         self.timerHelper = timerHelper;
         
-        self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:0.01 block:^(NSTimer *timer) {
+        self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:1.0 block:^(NSTimer *timer) {
+            
             // 点击录音模式 需要显示录音时长
             [self changeTopLable:timer];
             
         } repeats:YES];
     }else {
         
-        self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:0.01 block:^(NSTimer *timer) {
+        self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:1.0 block:^(NSTimer *timer) {
             
             //长按录制 需要显示 HUD
             
@@ -333,6 +335,7 @@ static NSString *const pressCancelStr = @"长按模式";
 
 #pragma mark - - 结束录音
 - (void)endRecorder {
+    
 
     [self.recorderHelper endAudioRecorder];
     
@@ -342,7 +345,7 @@ static NSString *const pressCancelStr = @"长按模式";
     if (_recorderType==PLCAudioRecorderClickType) {
         self.topLable.text = @"";
         
-        [PLCPlayAudioHelper CAFChangeToMP3];
+       [PLCPlayAudioHelper CAFChangeToMP3];
         
     }else {
         self.topLable.text = pressSelectStr;
@@ -366,7 +369,7 @@ static NSString *const pressCancelStr = @"长按模式";
 #pragma mark - - 显示录音时长
 - (void)changeTopLable:(NSTimer *)timer {
     
-    self.topLable.text = [self.timerHelper getTimerlength2];
+    self.topLable.text = [self.timerHelper getTimerlength3];
     
 }
 
@@ -413,6 +416,10 @@ static NSString *const pressCancelStr = @"长按模式";
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.bottomLable.mas_bottom).offset(K_AUTOSIZE_HEIGHT(40));
     }];
+}
+
+- (void)cafChangeToMP3Complete {
+    NSLog(@"%s", __func__);
 }
 
 @end
