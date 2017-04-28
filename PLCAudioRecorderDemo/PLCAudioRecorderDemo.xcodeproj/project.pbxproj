@@ -296,7 +296,7 @@
 				TargetAttributes = {
 					41DEF2AD1EAF5EB8000F5ACD = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = ZJ7FR8TH2D;
+						DevelopmentTeam = 4SBTJD6L4R;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -533,7 +533,7 @@
 			baseConfigurationReference = 6100DC71678AF7B4A7548AE7 /* Pods-PLCAudioRecorderDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZJ7FR8TH2D;
+				DEVELOPMENT_TEAM = 4SBTJD6L4R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PLCAudioRecorderDemo/Tools",
@@ -557,7 +557,7 @@
 			baseConfigurationReference = B2B9E2802099BFF502F5C5FE /* Pods-PLCAudioRecorderDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZJ7FR8TH2D;
+				DEVELOPMENT_TEAM = 4SBTJD6L4R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PLCAudioRecorderDemo/Tools",

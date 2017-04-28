@@ -13,12 +13,15 @@
 
 #pragma mark - - 录音相关
 /** 开始录音 */
-- (void)startAudioRecorder;
+- (BOOL)startAudioRecorder;
 /** 暂停录音 */
 - (void)pauseAudioRecorder;
 /** 恢复录音 */
 - (void)resumeAudioRecorder;
 /** 停止录音 */
 - (void)endAudioRecorder;
+
+
++ (BOOL)didSystemOpendMicrophone;
 
 @end

@@ -112,6 +112,7 @@
 }
 
 
+#pragma mark - - caf 转换 mp3
 + (void)CAFChangeToMP3 {
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *filePath = [path stringByAppendingPathComponent:kRecordAudioFile];

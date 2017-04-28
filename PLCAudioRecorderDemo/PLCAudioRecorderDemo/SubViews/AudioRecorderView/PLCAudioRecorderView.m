@@ -229,7 +229,7 @@ static NSString *const pressCancelStr = @"长按模式";
     //重置 top
     self.topLable.text = clickSelectStr;
     //停止 播放录音
-
+    [self.playAudioHelper stop];
     
 }
 
@@ -298,9 +298,15 @@ static NSString *const pressCancelStr = @"长按模式";
 
     //开始计时
     
-    PLCAudioRecorderHelper *recorderHelper = [PLCAudioRecorderHelper sharedPLCAudioRecorderHelper];
-    [recorderHelper startAudioRecorder];
-    self.recorderHelper = recorderHelper;
+    if (!_recorderHelper) {
+        PLCAudioRecorderHelper *recorderHelper = [PLCAudioRecorderHelper sharedPLCAudioRecorderHelper];
+        
+        self.recorderHelper = recorderHelper;
+    }
+    
+    if (![self.recorderHelper startAudioRecorder]) {
+        return;
+    }
     
     if (_recorderType==PLCAudioRecorderClickType) {
         
@@ -351,7 +357,7 @@ static NSString *const pressCancelStr = @"长按模式";
     if (_recorderType==PLCAudioRecorderClickType) {
         [self.playAudioHelper stop];
         self.topLable.text = clickCancelStr;
-        self.auditionButton.selected = !self.auditionButton.selected;
+        self.auditionButton.selected = NO;
         [self changeclickWithImgName:@"living_btn_big_recard1"];
     }
     

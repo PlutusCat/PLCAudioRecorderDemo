@@ -46,11 +46,8 @@ static id instance;
 - (AVAudioRecorder *)audioRecorder {
     if (!_audioRecorder) {
         
-        // 1.获取沙盒地址
         self.recordFileUrl = [PLCAudioPath getRecordFilePath];
-        NSLog(@"recordFileUrl = %@", self.recordFileUrl);
         
-        // 3.设置录音的一些参数
         NSDictionary *setting = [self getAudioSetting];
 
         NSError *error = nil;
@@ -78,7 +75,7 @@ static id instance;
     //设置录音格式
     [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
     //设置录音采样率，8000是电话采样率，对于一般录音已经够了
-    [dicM setObject:@(8000) forKey:AVSampleRateKey];
+    [dicM setObject:@(11025.0) forKey:AVSampleRateKey];
     //设置通道,这里采用单声道
     [dicM setObject:@(2) forKey:AVNumberOfChannelsKey];
     //每个采样点位数,分为8、16、24、32
@@ -87,13 +84,15 @@ static id instance;
 //    [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
     //录音的质量
     [dicM setObject:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
+    
     //....其他设置等
     return dicM;
 }
 
 
 #pragma mark - - 开始录音
-- (void)startAudioRecorder {
+- (BOOL)startAudioRecorder {
+    
     // 停止正在播放的音频
     
     // 停止正在录制的音频
@@ -118,17 +117,17 @@ static id instance;
     }
     
     self.session = session;
-
-    if ([self.audioRecorder prepareToRecord]) {
-        NSLog(@"prepareToRecord = YES");
-    }else {
-        NSLog(@"prepareToRecord = NO");
-    }
     
-    if ([self.audioRecorder record]) {
-        NSLog(@"record = YES");
+    [self.audioRecorder record];
+    
+    if (![PLCAudioRecorderHelper didSystemOpendMicrophone]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"需要开启麦克风权限，请前往设置打开" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+        return NO;
     }else {
-        NSLog(@"record = NO");
+        return YES;
     }
     
 }
@@ -169,5 +168,33 @@ static id instance;
     NSLog(@"录音出错 = %@", error);
     
 }
+
+
+#pragma mark - 后台是否允许app使用麦克风  YES——允许  NO——不允许
++ (BOOL)didSystemOpendMicrophone {
+    
+    if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
+        
+        __block BOOL isEnable = YES;
+        
+        [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+            if (granted) {
+                // Microphone enabled code
+                NSLog(@"Microphone is enabled..");
+                isEnable = YES;
+            }
+            else {
+                // Microphone disabled code
+                NSLog(@"Microphone is disabled..");
+                isEnable = NO;
+            }
+        }];
+        
+        return isEnable;
+        
+    }
+    return NO;
+}
+
 
 @end
