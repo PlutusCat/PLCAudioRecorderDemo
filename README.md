@@ -32,8 +32,17 @@ AVAudioRecorder setting
 /* value is an integer from enum AVAudioQuality */
 [MutableDict setObject:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
 ```
+# History
 
-# libraries
+
+#### Version 1.0.0
+* [x] UI
+* [x] PLCAudioRecorderClickType 
+* [x] .CAF change to .MP3
+* [ ] Real-time conversion
+
+
+# Libraries
 *  [FreeStreamer](https://github.com/muhku/FreeStreamer)
 *  [Masonry](https://github.com/SnapKit/Masonry)
 *  [BlocksKit](https://github.com/zwaldowski/BlocksKit)
