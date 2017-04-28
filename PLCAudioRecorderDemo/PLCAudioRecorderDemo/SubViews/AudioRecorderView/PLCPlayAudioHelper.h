@@ -25,8 +25,6 @@
 @property (nonatomic, copy) dispatch_block_t playerDidFinish;
 
 
-+ (BOOL)didSystemOpendMicrophone;
-
 + (void)CAFChangeToMP3;
 
 @end
