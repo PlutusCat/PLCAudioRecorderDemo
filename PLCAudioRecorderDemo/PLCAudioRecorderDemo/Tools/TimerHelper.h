@@ -16,6 +16,4 @@
 
 
 - (NSString *)getTimerlength;
-- (NSString *)getTimerlength2;
-- (NSString *)getTimerlength3;
 @end

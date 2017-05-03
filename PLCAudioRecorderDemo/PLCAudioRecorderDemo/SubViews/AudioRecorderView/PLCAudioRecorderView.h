@@ -25,4 +25,12 @@ typedef NS_ENUM(NSInteger, PLCRecorderRunType) {
  * recorderType 分 点击 和 长按 模式
  */
 - (void)changeAudioRecorderType:(PLCAudioRecorderType)recorderType;
+
+/** 
+ 录音时长
+ */
+@property (nonatomic, assign) CGFloat recorderTimer;
+
+@property (nonatomic, copy) void (^sendRecordBlock) (NSURL *filePath);
+
 @end

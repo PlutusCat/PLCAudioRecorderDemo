@@ -28,7 +28,6 @@
     [mainTableViewVC didMoveToParentViewController:self];
     self.mainTableViewVC = mainTableViewVC;
     
-    
     PLCAudioRecorderView *recorderView = [[PLCAudioRecorderView alloc] init];
     [self.view addSubview:recorderView];
     self.recorderView = recorderView;

@@ -42,6 +42,10 @@ static NSString *const pressCancelStr = @"长按模式";
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) TimerHelper *timerHelper;
 @property (nonatomic, assign) CGFloat timeFloat;
+
+@property (nonatomic, assign) BOOL isMP3;
+@property (nonatomic, assign) BOOL isWillSend;
+@property (nonatomic, assign) BOOL isSend;
 @end
 
 @implementation PLCAudioRecorderView
@@ -182,7 +186,6 @@ static NSString *const pressCancelStr = @"长按模式";
             self.bottomLable.alpha = self.clickButton.alpha;
         }];
         
-        
     }else {
         [self changeAudioRecorderType:PLCAudioRecorderPressType];
     }
@@ -207,9 +210,10 @@ static NSString *const pressCancelStr = @"长按模式";
     
     if (self.auditionButton.isSelected) {
         NSLog(@"试听");
+        NSURL *recorderPath = _isMP3==YES?[PLCAudioPath getMp3RecordFilePath]:[PLCAudioPath getRecordFilePath];
         
-        [self.playAudioHelper playRecorder];
-//        [self.playAudioHelper playStreamRecorder];
+        [self.playAudioHelper playRecorderWithPath:recorderPath];
+
     }else {
         NSLog(@"取消");
         
@@ -297,6 +301,8 @@ static NSString *const pressCancelStr = @"长按模式";
 #pragma mark - - 开始录音
 - (void)startRecorder {
 
+    _isWillSend = NO;
+    
     //开始计时
     
     if (!_recorderHelper) {
@@ -336,7 +342,6 @@ static NSString *const pressCancelStr = @"长按模式";
 #pragma mark - - 结束录音
 - (void)endRecorder {
     
-
     [self.recorderHelper endAudioRecorder];
     
     //结束计时
@@ -356,12 +361,24 @@ static NSString *const pressCancelStr = @"长按模式";
 
 #pragma mark - - 发送录音
 - (void)sendAudioRecorder {
-
+    _isWillSend = YES;
+    
     if (_recorderType==PLCAudioRecorderClickType) {
+        
         [self.playAudioHelper stop];
         self.topLable.text = clickCancelStr;
         self.auditionButton.selected = NO;
         [self changeclickWithImgName:@"living_btn_big_recard1"];
+        
+        //如果转换完成了 直接发送
+        if (_isMP3) {
+            _isSend = YES;
+            
+            if (_sendRecordBlock) {
+                _sendRecordBlock([PLCAudioPath getMp3RecordFilePath]);
+            }
+        }
+        
     }
     
 }
@@ -369,7 +386,7 @@ static NSString *const pressCancelStr = @"长按模式";
 #pragma mark - - 显示录音时长
 - (void)changeTopLable:(NSTimer *)timer {
     
-    self.topLable.text = [self.timerHelper getTimerlength3];
+    self.topLable.text = [self.timerHelper getTimerlength];
     
 }
 
@@ -420,6 +437,20 @@ static NSString *const pressCancelStr = @"长按模式";
 
 - (void)cafChangeToMP3Complete {
     NSLog(@"%s", __func__);
+    self.isMP3 = YES;
+    
+    if (_isWillSend&&!_isSend) {
+        // 转换完成再发送
+        NSLog(@"发送 MP3");
+        if (_sendRecordBlock) {
+            _sendRecordBlock([PLCAudioPath getMp3RecordFilePath]);
+        }
+    }
 }
 
+
+#pragma mark - - 注销 
+- (void)dealloc {
+    NSLog(@"LCAudioRecorderView 注销了 ");
+}
 @end

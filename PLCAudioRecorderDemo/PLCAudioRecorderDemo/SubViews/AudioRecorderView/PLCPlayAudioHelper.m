@@ -60,12 +60,12 @@
 
 // 播放本地音频文件
 
-- (void)playRecorder {
+- (void)playRecorderWithPath:(NSURL *)filePath {
     
     if (!_audioPlayer) {
-        NSURL *url = [PLCAudioPath getMp3RecordFilePath];
+        
         NSError *error = nil;
-        self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
+        self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:filePath error:&error];
         self.audioPlayer.delegate = self;
         self.audioPlayer.numberOfLoops = 0;
         [self.audioPlayer prepareToPlay];
@@ -74,12 +74,12 @@
             return ;
         }
         
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        
-        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-
     }
 
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
     if (![self.audioPlayer isPlaying]) {
         [self.audioPlayer play];
     }

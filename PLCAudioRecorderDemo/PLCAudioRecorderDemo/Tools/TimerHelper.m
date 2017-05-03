@@ -49,31 +49,6 @@
 }
 
 - (NSString *)getTimerlength {
-    self.persent++;
-//    每过１００毫秒，就让秒＋１，然后让毫秒在归零
-    if(self.persent==100){
-        self.seconds++;
-        self.persent = 0;
-    }
-    if (self.seconds == 60) {
-        self.minutes++;
-        self.seconds = 0;
-    }
-
-    return [NSString stringWithFormat:@"%02ld'%02ld\"",(long)_minutes,(long)_seconds];
-}
-
-- (NSString *)getTimerlength2 {
-    
-    self.seconds++;
-    
-    NSString *startTime = [NSString stringWithFormat:@"%02li:%02li.%02li",_seconds/100/60%60,_seconds/100%60,_seconds%100];
-    
-    return startTime;
-}
-
-
-- (NSString *)getTimerlength3 {
 //    获取系统  minutes 分 seconds 秒
     self.seconds++;
     

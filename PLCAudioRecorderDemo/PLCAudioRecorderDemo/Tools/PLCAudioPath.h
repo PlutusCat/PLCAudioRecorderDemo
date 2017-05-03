@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kRecordAudioFile = @"PLCRecord.caf";
-static NSString * const kChangedAudioFile = @"PLCChangedRecord.mp3";
+static NSString * const kRecordAudioFile = @"RecordAudio.caf";
+static NSString * const kChangedAudioFile = @"ChangedAudio.mp3";
 
 @interface PLCAudioPath : NSObject
 /**
@@ -21,4 +21,6 @@ static NSString * const kChangedAudioFile = @"PLCChangedRecord.mp3";
 + (NSURL *)getMp3RecordFilePath;
 
 + (void)deleteRecordFile;
+
++ (void)getRecordAttributes;
 @end

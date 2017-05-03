@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4137A21B1EB829DF00C2E116 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4137A21A1EB829DF00C2E116 /* NSDate+Category.m */; };
 		4144654B1EB21BEC00B49337 /* PLCPlayAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144654A1EB21BEC00B49337 /* PLCPlayAudioHelper.m */; };
 		4144654E1EB21CAF00B49337 /* PLCAudioPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144654D1EB21CAF00B49337 /* PLCAudioPath.m */; };
 		417BDBA41EB03A1700D9E456 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417BDBA31EB03A1700D9E456 /* MainTableViewController.m */; };
@@ -42,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4137A2191EB829DF00C2E116 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		4137A21A1EB829DF00C2E116 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		414465491EB21BEC00B49337 /* PLCPlayAudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCPlayAudioHelper.h; sourceTree = "<group>"; };
 		4144654A1EB21BEC00B49337 /* PLCPlayAudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCPlayAudioHelper.m; sourceTree = "<group>"; };
 		4144654C1EB21CAF00B49337 /* PLCAudioPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCAudioPath.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				417BDBE21EB0B39B00D9E456 /* TimerHelper.m */,
 				4144654C1EB21CAF00B49337 /* PLCAudioPath.h */,
 				4144654D1EB21CAF00B49337 /* PLCAudioPath.m */,
+				4137A2191EB829DF00C2E116 /* NSDate+Category.h */,
+				4137A21A1EB829DF00C2E116 /* NSDate+Category.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				417BDBA71EB03A3400D9E456 /* MainTableCell.m in Sources */,
 				4144654E1EB21CAF00B49337 /* PLCAudioPath.m in Sources */,
 				417BDBDB1EB0775700D9E456 /* PLCAudioRecorderView.m in Sources */,
+				4137A21B1EB829DF00C2E116 /* NSDate+Category.m in Sources */,
 				417BDBAB1EB0467E00D9E456 /* LocalData.m in Sources */,
 				41DEF2B61EAF5EB9000F5ACD /* AppDelegate.m in Sources */,
 				41DEF2B31EAF5EB9000F5ACD /* main.m in Sources */,

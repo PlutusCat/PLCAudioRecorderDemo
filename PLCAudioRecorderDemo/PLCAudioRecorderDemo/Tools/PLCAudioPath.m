@@ -38,4 +38,23 @@
         [fileManager removeItemAtURL:recordFileUrl error:NULL];
     }
 }
+
++ (void)getRecordAttributes {
+    NSString *urlStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    urlStr = [urlStr stringByAppendingPathComponent:kRecordAudioFile];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:urlStr error:nil];
+    NSArray *keys;
+    id key, value;
+    keys = [fileAttributes allKeys];
+    NSInteger count = [keys count];
+    for (int i = 0; i < count; i++) {
+        key = [keys objectAtIndex: i];  //获取文件名
+        value = [fileAttributes objectForKey: key];  //获取文件属性
+        
+        NSLog(@"key = %@  value = %@",key, value);
+    }
+}
 @end

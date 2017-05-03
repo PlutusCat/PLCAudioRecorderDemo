@@ -92,18 +92,20 @@ static id instance;
      *  开始录音
      *  设置音频会话
      */
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSError *sessionError;
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
-    
-    if(session == nil) {
-        NSLog(@"Error creating session: %@", [sessionError description]);
+    if (!_session) {
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *sessionError;
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
         
-    }else {
-        [session setActive:YES error:nil];
+        if(session == nil) {
+            NSLog(@"Error creating session: %@", [sessionError description]);
+            
+        }else {
+            [session setActive:YES error:nil];
+        }
+        
+        self.session = session;
     }
-    
-    self.session = session;
     
     [self.audioRecorder record];
     
@@ -147,9 +149,11 @@ static id instance;
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
     if (flag) {
         NSLog(@"录音完成!");
-        [self.session setActive:NO error:nil];
+//        [self.session setActive:NO error:nil];
         
-        [recorder deleteRecording];
+//        [PLCAudioPath getRecordAttributes];
+        
+//        [recorder deleteRecording];
         
     }  
 }

@@ -13,7 +13,7 @@ static NSString * const CAFChangeToMP3Complete = @"CAFChangeToMP3Complete";
 @interface PLCPlayAudioHelper : NSObject
 #pragma mark - - 播放相关
 /** 播放录音 */
-- (void)playRecorder;
+- (void)playRecorderWithPath:(NSURL *)filePath;
 /** 停止播放录音 */
 - (void)stop;
 
